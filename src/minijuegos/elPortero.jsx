@@ -50,8 +50,8 @@ function Pantalla({ fase, datos, vivo, resumen, jugadores, yo }) {
         </div>
         <p className={soyPortero ? 'aviso' : 'pista'}>
           {soyPortero
-            ? `🧤 Tapas ${CUBRE} de las ${ZONAS} zonas. Cada parada te suma.`
-            : 'Elige zona. Y ojo: si dos chutáis a la misma, os estorbáis y falláis los dos.'}
+            ? `🧤 Tapas ${CUBRE} de las ${ZONAS} zonas.`
+            : 'Chuta a una zona. Si dos coincidís, falláis los dos.'}
         </p>
       </div>
     )
@@ -137,7 +137,7 @@ export default {
   inicial: { tanda: 0, goles: 0, paradas: 0, choques: 0, ultima: null, golesPor: {} },
 
   fases: () => [
-    { id: 'reparto', ms: 4000 },
+    { id: 'reparto', ms: 6000 },
     ...Array.from({ length: TANDAS }, () => [
       { id: 'tanda', ms: 5000 },
       { id: 'remate', ms: 3200 },

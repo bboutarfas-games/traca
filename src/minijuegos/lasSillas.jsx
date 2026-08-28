@@ -18,6 +18,19 @@ function Pantalla({ fase, datos, resumen, jugadores, yo }) {
   const miSilla = yo?.getState('silla')
   const sillas = Array.from({ length: datos.sillas }, (_, i) => i)
 
+  if (fase === 'aviso')
+    return (
+      <div className="orden">
+        <p className="susurro">Una silla menos que jugadores</p>
+        <div className="tarjeta">
+          <p className="instruccion">
+            Hay <b>{datos.sillas}</b> sillas para {jugadores.length}.
+          </p>
+        </div>
+        <p className="pista">Si dos elegís la misma, fuera las dos.</p>
+      </div>
+    )
+
   if (fase === 'musica')
     return (
       <>
@@ -101,6 +114,7 @@ export default {
 
   // La música dura un rato distinto cada vez: esa es la trampa.
   fases: (datos) => [
+    { id: 'aviso', ms: 7000 },
     { id: 'musica', ms: datos.musicaMs, reloj: false },
     { id: 'pelea', ms: 3500 },
     { id: 'resultado', ms: 7000 },

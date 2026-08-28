@@ -32,7 +32,7 @@ function Pantalla({ fase, datos, resumen, jugadores, yo }) {
           </p>
           <span className="simbolote">{SIMBOLOS[datos.codigo[miPosicion]]}</span>
         </div>
-        <p className="pista">Nadie más ve tu trozo. Decidlo en voz alta y montad las cuatro.</p>
+        <p className="pista">Solo tú lo ves. Decidlo en voz alta.</p>
       </div>
     )
 
@@ -84,7 +84,7 @@ export default {
   estadosJugador: ['codigo'],
 
   fases: () => [
-    { id: 'pistas', ms: 7000 },
+    { id: 'pistas', ms: 8000 },
     { id: 'teclado', ms: 13000 },
     { id: 'resultado', ms: 7000 },
   ],

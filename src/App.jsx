@@ -106,7 +106,12 @@ export default function App() {
     let jugables = MINIJUEGOS.filter((m) => jugadores.length >= m.minimo)
     if (!jugables.length) jugables = MINIJUEGOS
     const sinRepetir = jugables.filter((m) => m.id !== mjId)
-    const siguiente = alAzar(sinRepetir.length ? sinRepetir : jugables)
+
+    // ?prueba=<id> repite siempre la misma. Sirve para revisarla sin depender
+    // del azar; no hace falta para jugar.
+    const forzada = new URLSearchParams(window.location.search).get('prueba')
+    const siguiente =
+      MINIJUEGOS.find((m) => m.id === forzada) || alAzar(sinRepetir.length ? sinRepetir : jugables)
     const datosRonda = { ...siguiente.preparar({ jugadores }), mj: siguiente.id }
 
     // Limpiamos lo que dejó la ronda anterior, sea del minijuego que sea.

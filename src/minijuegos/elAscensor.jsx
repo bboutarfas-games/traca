@@ -70,10 +70,10 @@ function Pantalla({ fase, vivo, resumen, jugadores, yo }) {
         <p className="susurro">Todos a la vez o ninguno</p>
         <div className="tarjeta">
           <p className="instruccion">
-            Mantened pulsado para subir el ascensor. Hacen falta <b>{necesarios} de {jugadores.length}</b> a la vez.
+            Mantened pulsado. Hacen falta <b>{necesarios} de {jugadores.length}</b>.
           </p>
         </div>
-        <p className="pista">Pero el brazo se cansa. Tendréis que turnaros para descansar.</p>
+        <p className="pista">El brazo se cansa: turnaos.</p>
       </div>
     )
 
@@ -130,7 +130,7 @@ export default {
   inicial: { altura: 0 },
 
   fases: () => [
-    { id: 'aviso', ms: 4000 },
+    { id: 'aviso', ms: 7500 },
     { id: 'subida', ms: 16000 },
     { id: 'resultado', ms: 7000 },
   ],

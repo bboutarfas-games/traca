@@ -35,13 +35,13 @@ function Pantalla({ fase, datos, vivo, resumen, jugadores, yo }) {
         <p className="susurro">Hay que mover el armatoste</p>
         <div className="tarjeta">
           <p className="instruccion">
-            Entre todos hacen falta <b>{objetivo}</b> empujes en {ASALTOS} asaltos.
+            Hacen falta <b>{objetivo}</b> empujes entre todos.
           </p>
         </div>
         {soySaboteador ? (
-          <p className="aviso">🕳️ Eres el saboteador. Ganas si NO llega. Puedes frenar a escondidas.</p>
+          <p className="aviso">🕳️ Eres el saboteador: ganas si no llega.</p>
         ) : (
-          <p className="pista">Solo puedes empujar {EMPUJES_MAX} veces: alguna tendrás que descansar.</p>
+          <p className="pista">Solo puedes empujar {EMPUJES_MAX} veces de {ASALTOS}.</p>
         )}
       </div>
     )
@@ -147,7 +147,7 @@ export default {
   inicial: { asalto: 0, total: 0, empujes: {}, frenadas: 0, ultima: null },
 
   fases: () => [
-    { id: 'reparto', ms: 5000 },
+    { id: 'reparto', ms: 7000 },
     ...Array.from({ length: ASALTOS }, () => [
       { id: 'asalto', ms: 4500 },
       { id: 'tiron', ms: 2600 },

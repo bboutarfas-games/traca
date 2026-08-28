@@ -61,8 +61,8 @@ function Pantalla({ fase, datos, vivo, resumen, jugadores, yo }) {
         </div>
         <p className={soyVigilante ? 'aviso' : 'pista'}>
           {soyVigilante
-            ? '🔦 Ilumina un pasillo cada asalto. A quien pilles, no avanza.'
-            : `Cruza ${META} tramos sin que te ilumine. Elige pasillo cada asalto.`}
+            ? '🔦 Ilumina un pasillo. A quien pilles, no avanza.'
+            : `Cruza ${META} tramos sin que te ilumine.`}
         </p>
       </div>
     )
@@ -142,7 +142,7 @@ export default {
   inicial: { paso: {}, ultima: null, asaltosConCaptura: 0 },
 
   fases: () => [
-    { id: 'reparto', ms: 4000 },
+    { id: 'reparto', ms: 6000 },
     ...Array.from({ length: ASALTOS }, () => [
       { id: 'asalto', ms: 4200 },
       { id: 'luz', ms: 2800 },

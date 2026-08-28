@@ -33,13 +33,13 @@ function Pantalla({ fase, vivo, resumen, jugadores, yo }) {
   if (fase === 'aviso')
     return (
       <div className="orden">
-        <p className="susurro">Se hunde la más llena</p>
+        <p className="susurro">Elegid baldosa</p>
         <div className="tarjeta">
           <p className="instruccion">
-            Elegid baldosa. Si dos coincidís, se hunde la <b>más llena</b> y caen sus ocupantes.
+            Se hunde la baldosa <b>más llena</b>.
           </p>
         </div>
-        <p className="pista">Si cada uno va a la suya, no se hunde nada. Pero el suelo se estrecha.</p>
+        <p className="pista">Repartíos: el suelo se estrecha cada asalto.</p>
       </div>
     )
 
@@ -114,7 +114,7 @@ export default {
   inicial: { vivos: null, asalto: 0, ultima: null },
 
   fases: () => [
-    { id: 'aviso', ms: 4000 },
+    { id: 'aviso', ms: 7000 },
     ...SUELO.map(() => [{ id: 'elegir', ms: 3800 }, { id: 'crujido', ms: 2800 }]).flat(),
     { id: 'resultado', ms: 6500 },
   ],

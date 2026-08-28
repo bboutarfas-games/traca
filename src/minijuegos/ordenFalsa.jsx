@@ -40,7 +40,7 @@ function Pantalla({ fase, datos, resumen, jugadores, yo }) {
           <Figura casilla={miCasilla} tam={110} />
           <p className="instruccion">Pulsa el <b>{etiqueta(miCasilla)}</b></p>
         </div>
-        {soyInfiltrado && <p className="aviso">⚠️ Eres el infiltrado. Tu orden no es la de los demás.</p>}
+        {soyInfiltrado && <p className="aviso">⚠️ Eres el infiltrado: tu orden es distinta.</p>}
       </div>
     )
 
@@ -108,7 +108,7 @@ export default {
   estadosJugador: ['eleccion', 'voto'],
 
   fases: () => [
-    { id: 'orden', ms: 4000 },
+    { id: 'orden', ms: 7000 },
     { id: 'accion', ms: 7000 },
     { id: 'votacion', ms: 10000 },
     { id: 'resultado', ms: 7000 },
