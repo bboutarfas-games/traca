@@ -48,7 +48,11 @@ tramos en tres asaltos, así que puedes permitirte que te pillen una vez.
 jugador solo ve uno, en secreto. Hay que decirlos en voz alta, montarla entre todos
 y marcarla cada uno en su pantalla. Puntúa quien la acierte.
 
-Faltan tres, listados en `PENDIENTES`.
+**El último en pie** (todos contra todos) — todos eligen baldosa en secreto y se
+hunde la que tenga más gente. Si cada uno va a la suya no se hunde nada, pero el
+suelo se estrecha cada asalto (6, 4, 3 y 2 baldosas) hasta forzar el choque.
+
+Faltan dos, listados en `PENDIENTES`.
 
 ## Correr
 
