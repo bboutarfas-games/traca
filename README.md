@@ -13,9 +13,15 @@ Cada minijuego es un módulo en `src/minijuegos/` que exporta:
     id, nombre, tipo, minimo      // ficha
     estadosJugador                // claves que el motor limpia entre rondas
     fases(datos)                  // [{ id, ms, reloj? }]
-    preparar({ jugadores })       // datos de la ronda, sincronizados
-    resolver({ jugadores, datos })// reparte puntos, devuelve el resumen
-    Pantalla({ fase, datos, ... })// pinta cada fase
+    preparar({ jugadores })       // datos de la ronda, fijos y sincronizados
+    resolver({ jugadores, datos, vivo })  // reparte puntos, devuelve el resumen
+    Pantalla({ fase, datos, vivo, ... })  // pinta cada fase
+
+    inicial                       // opcional: estado que cambia durante la fase
+    tick({ jugadores, vivo, setVivo, fase })  // opcional: lo llama el host ~10/s
+
+`datos` no cambia durante la ronda; `vivo` sí, y solo lo escribe el host. Los
+minijuegos sin estado continuo no declaran `inicial` ni `tick`.
 
 Añadir uno nuevo es escribir ese módulo y meterlo en `src/minijuegos/index.js`.
 
@@ -28,7 +34,11 @@ decide entre cumplir su orden (+2) o disimular (+3 si no le pillan).
 **Las sillas** (todos contra todos) — hay una silla menos que jugadores. Si te
 adelantas a la señal, fuera. Si dos elegís la misma silla, fuera los dos.
 
-Faltan seis, listados en `PENDIENTES`.
+**El ascensor** (todos contra el juego) — mantener pulsado entre todos para que
+suba, pero el brazo se cansa: hay que turnarse para descansar sin que bajen de la
+mitad los que sujetan. O llegáis todos, o no puntúa nadie.
+
+Faltan cinco, listados en `PENDIENTES`.
 
 ## Correr
 

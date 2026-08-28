@@ -28,6 +28,8 @@ export default function App() {
   const [finFase, setFinFase] = useMultiplayerState('finFase', 0)
   const [ronda, setRonda] = useMultiplayerState('ronda', 0)
   const [totalRondas, setTotalRondas] = useMultiplayerState('totalRondas', 5)
+  // Estado que cambia durante la fase (altura, marcadores…). Solo lo escribe el host.
+  const [vivo, setVivo] = useMultiplayerState('vivo', null)
 
   const [ahora, setAhora] = useState(Date.now())
   useEffect(() => {
@@ -39,6 +41,7 @@ export default function App() {
   const mj = MINIJUEGOS.find((m) => m.id === mjId)
   // mjId y datos viajan en mensajes distintos: hasta que casan, no pintamos nada.
   const datosOk = datos?.mj === mjId ? datos : null
+  const vivoOk = vivo?.mj === mjId ? vivo : null
   const fases = mj && datosOk ? mj.fases(datosOk) : []
   const fase = fases[faseIdx]?.id
   const conReloj = fases[faseIdx]?.reloj !== false
@@ -70,6 +73,7 @@ export default function App() {
 
     setMjId(siguiente.id)
     setDatos(datosRonda)
+    setVivo(siguiente.inicial ? { ...siguiente.inicial, mj: siguiente.id } : null)
     setResumen(null)
     setFaseIdx(0)
     setRonda(n)
@@ -79,11 +83,16 @@ export default function App() {
 
   useEffect(() => {
     if (!esHost || etapa !== 'jugando' || !mj || !datosOk) return
+
+    // Los minijuegos con estado continuo avanzan aquí, unas 10 veces por segundo.
+    if (mj.tick && fase) mj.tick({ jugadores, datos: datosOk, vivo: vivoOk, setVivo, fase })
+
     if (ahora < finFase) return
 
     const sig = faseIdx + 1
     if (sig < fases.length) {
-      if (fases[sig].id === 'resultado') setResumen(mj.resolver({ jugadores, datos: datosOk }))
+      if (fases[sig].id === 'resultado')
+        setResumen(mj.resolver({ jugadores, datos: datosOk, vivo: vivoOk }))
       setFaseIdx(sig)
       setFinFase(Date.now() + fases[sig].ms)
     } else if (ronda >= totalRondas) {
@@ -158,7 +167,14 @@ export default function App() {
         <button className="salirChico" onClick={salir} title="Salir de la sala">✕</button>
       </header>
       <p className="tituloPrueba">{mj.nombre}</p>
-      <mj.Pantalla fase={fase} datos={datosOk} resumen={resumen} jugadores={jugadores} yo={yo} />
+      <mj.Pantalla
+        fase={fase}
+        datos={datosOk}
+        vivo={vivoOk}
+        resumen={resumen}
+        jugadores={jugadores}
+        yo={yo}
+      />
     </Escenario>
   )
 }

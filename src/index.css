@@ -355,3 +355,86 @@ body {
 .opcion.activa { border-color: var(--oro); background: rgba(255, 204, 47, 0.12); }
 .opcion:disabled { cursor: default; }
 .opcion:disabled:not(.activa) { opacity: 0.45; }
+
+/* --- El ascensor --------------------------------------------------------- */
+.hueco {
+  position: relative;
+  width: 130px;
+  height: 260px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.07));
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.hueco .cable {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.hueco .cabina {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.2rem;
+  line-height: 1;
+  transition: bottom 0.12s linear;
+}
+.hueco .cabina .cuerda {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 3px;
+  height: 260px;
+  background: var(--oro);
+  transform: translateX(-50%);
+}
+.hueco .cabina .cuerda.floja { background: #ff3b5c; }
+.hueco .meta {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--oro);
+}
+
+.agarre {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 3px solid var(--oro);
+  background: rgba(255, 204, 47, 0.1);
+  color: var(--texto);
+  font: inherit;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  transition: transform 0.08s ease, background 0.08s ease;
+}
+.agarre.activo { transform: scale(0.94); background: rgba(255, 204, 47, 0.3); }
+.agarre.agotado {
+  border-color: rgba(255, 59, 92, 0.5);
+  background: rgba(255, 59, 92, 0.1);
+  color: var(--tenue);
+  cursor: default;
+}
+
+.fuerza {
+  width: 190px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.fuerza .barra {
+  height: 100%;
+  background: var(--oro);
+  transition: width 0.1s linear;
+}
