@@ -482,3 +482,37 @@ body {
   background: rgba(255, 255, 255, 0.1);
 }
 .carrera .tramo.hecho { background: var(--oro); }
+
+/* --- La contraseña -------------------------------------------------------- */
+.simbolote { font-size: 3.5rem; line-height: 1; }
+
+.ranuras { display: flex; gap: 0.5rem; justify-content: center; }
+.ranura {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 1.8rem;
+}
+.ranura.resaltada { border-color: var(--oro); background: rgba(255, 204, 47, 0.1); }
+
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  width: min(320px, 100%);
+}
+.tecla {
+  aspect-ratio: 1.4;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 1.9rem;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.tecla:hover:not(:disabled) { transform: scale(1.05); border-color: var(--oro); }
+.tecla:disabled { opacity: 0.4; cursor: default; }

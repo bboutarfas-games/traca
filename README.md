@@ -44,7 +44,11 @@ mitad los que sujetan. O llegáis todos, o no puntúa nadie.
 eligen por cuál pasan, en secreto. Si te ilumina, no avanzas. Hay que cruzar dos
 tramos en tres asaltos, así que puedes permitirte que te pillen una vez.
 
-Faltan cuatro, listados en `PENDIENTES`.
+**La contraseña** (todos contra el juego) — la clave son cuatro símbolos y cada
+jugador solo ve uno, en secreto. Hay que decirlos en voz alta, montarla entre todos
+y marcarla cada uno en su pantalla. Puntúa quien la acierte.
+
+Faltan tres, listados en `PENDIENTES`.
 
 ## Correr
 
