@@ -97,6 +97,7 @@ export default {
   claim: 'Hay una silla menos que jugadores. Y no puedes compartirla.',
   minimo: 3,
   estadosJugador: ['silla', 'falso'],
+  musicaEn: 'musica',
 
   // La música dura un rato distinto cada vez: esa es la trampa.
   fases: (datos) => [

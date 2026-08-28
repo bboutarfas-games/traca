@@ -71,7 +71,8 @@ Ya están los ocho.
 Se abre la portada. **Crear partida** monta una sala y te da un código; **Unirse**
 entra con el código de otro; **Salir** vuelve a la portada y limpia la URL.
 
-En el lobby, el anfitrión elige la duración: Corta (3 rondas), Normal (5) o Larga (8).
+En el lobby cada uno se pone su nombre, y el anfitrión elige la duración: Corta
+(3 rondas), Normal (5) o Larga (8).
 
 Entramos con `skipLobby: true`, así que la pantalla propia de Playroom (elegir
 nombre, color y pulsar Launch) no aparece: los nombres y colores se asignan solos
@@ -84,8 +85,16 @@ devuelve a la portada con un aviso.
 Para probarlo solo, abre la portada en varias ventanas de incógnito y une dos con
 el código de la primera. Mínimo 3 jugadores.
 
+## Sonido
+
+`src/sonido.js` sintetiza todo con WebAudio: ni un fichero de audio ni una
+descarga. El contexto se crea en el primer sonido, que siempre viene de un clic,
+porque el navegador no lo permite antes. Un minijuego puede pedir musiquilla de
+fondo en una fase con `musicaEn: '<fase>'` (lo usa Las sillas). El botón de
+silencio guarda la preferencia en `localStorage`.
+
 ## Estado
 
-Prototipo. Sin sonido y sin persistencia.
+Prototipo. Sin persistencia entre sesiones.
 Playroom va en modo desarrollo: para publicar hace falta un `gameId` de
 joinplayroom.com. Trae soporte de Discord de fábrica.

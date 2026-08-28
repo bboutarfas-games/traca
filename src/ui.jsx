@@ -3,10 +3,12 @@
 // El perfil de un jugador recién entrado puede llegar vacío durante un frame.
 export const perfil = (j) => {
   const p = j?.getProfile?.() || {}
+  const propio = j?.getState?.('nombre')
+  const nombre = (propio || p.name || '…').trim()
   return {
-    nombre: p.name || '…',
+    nombre,
     color: p.color?.hexString || '#6b5b95',
-    inicial: (p.name || '?').slice(0, 1).toUpperCase(),
+    inicial: (nombre || '?').slice(0, 1).toUpperCase(),
   }
 }
 

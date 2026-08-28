@@ -7,7 +7,8 @@ import {
   getRoomCode,
 } from 'playroomkit'
 import { MINIJUEGOS } from './minijuegos/index.js'
-import { Escenario, Fichas, Podio, alAzar } from './ui.jsx'
+import { Escenario, Fichas, Podio, alAzar, perfil } from './ui.jsx'
+import { sonido } from './sonido.js'
 
 // Una ronda ronda los 20-28s según la prueba, de ahí los minutos aproximados.
 const DURACIONES = [
@@ -31,10 +32,18 @@ export default function App() {
   // Estado que cambia durante la fase (altura, marcadores…). Solo lo escribe el host.
   const [vivo, setVivo] = useMultiplayerState('vivo', null)
 
+  const [silenciado, setSilenciado] = useState(sonido.silenciado)
   const [ahora, setAhora] = useState(Date.now())
   useEffect(() => {
     const t = setInterval(() => setAhora(Date.now()), 100)
     return () => clearInterval(t)
+  }, [])
+
+  // Un solo oyente para el clic de todos los botones.
+  useEffect(() => {
+    const al = (e) => e.target.closest?.('button') && sonido.pulsar()
+    document.addEventListener('pointerdown', al)
+    return () => document.removeEventListener('pointerdown', al)
   }, [])
 
   const yo = myPlayer()
@@ -54,6 +63,30 @@ export default function App() {
     window.location.hash = ''
     window.location.reload()
   }
+
+  // Cada cambio de fase suena distinto, y la musiquilla solo en la fase que la pida.
+  useEffect(() => {
+    if (etapa !== 'jugando' || !fase) return
+    if (mj?.musicaEn === fase) sonido.musicaOn()
+    else sonido.musicaOff()
+
+    if (fase === 'resultado') sonido.revelar()
+    else if (mj?.musicaEn === fase) sonido.aviso()
+    else sonido.cambio()
+  }, [fase, faseIdx, mjId, etapa])
+
+  useEffect(() => {
+    if (etapa === 'fin') { sonido.musicaOff(); sonido.fanfarria() }
+    if (etapa === 'lobby') sonido.musicaOff()
+  }, [etapa])
+
+  // Los tres últimos segundos hacen tic.
+  useEffect(() => {
+    if (etapa !== 'jugando' || !conReloj) return
+    if (restante > 0 && restante <= 3) sonido.tic()
+  }, [restante, conReloj, etapa])
+
+  useEffect(() => () => sonido.musicaOff(), [])
 
   // Volver al lobby entre programas: reinicia el marcador y permite cambiar la
   // duración o esperar a que entre alguien más.
@@ -133,6 +166,15 @@ export default function App() {
         <Fichas jugadores={jugadores} />
         <p className="cuenta">{jugadores.length} en el plató</p>
 
+        <input
+          className="campo nombre"
+          defaultValue={perfil(yo).nombre}
+          maxLength={14}
+          aria-label="Tu nombre"
+          placeholder="Tu nombre"
+          onChange={(e) => myPlayer().setState('nombre', e.target.value.slice(0, 14))}
+        />
+
         <div className="duracion">
           <p className="susurro">Duración</p>
           <div className="opciones">
@@ -162,6 +204,9 @@ export default function App() {
           <button className="enlace" onClick={() => navigator.clipboard?.writeText(window.location.href)}>
             Copiar enlace de invitación
           </button>
+          <button className="enlace" onClick={() => setSilenciado(sonido.alternarSilencio())}>
+            {silenciado ? 'Activar sonido' : 'Silenciar'}
+          </button>
           <button className="enlace" onClick={salir}>Salir</button>
         </div>
       </Escenario>
@@ -189,6 +234,13 @@ export default function App() {
         <span className="ronda">Ronda {ronda}/{totalRondas}</span>
         <span className="reloj">{conReloj ? restante : '···'}</span>
         <span className="puntos">{yo?.getState('puntos') || 0} pts</span>
+        <button
+          className="salirChico"
+          onClick={() => setSilenciado(sonido.alternarSilencio())}
+          title={silenciado ? 'Activar sonido' : 'Silenciar'}
+        >
+          {silenciado ? '🔇' : '🔊'}
+        </button>
         <button className="salirChico" onClick={salir} title="Salir de la sala">✕</button>
       </header>
       <p className="tituloPrueba">{mj.nombre}</p>

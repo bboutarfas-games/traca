@@ -602,3 +602,5 @@ body {
 }
 .opcion.traidora { border-color: rgba(255, 59, 92, 0.5); }
 .opcion.traidora.activa { border-color: #ff3b5c; background: rgba(255, 59, 92, 0.18); }
+
+.campo.nombre { width: 12rem; letter-spacing: normal; }
