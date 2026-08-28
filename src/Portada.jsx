@@ -14,7 +14,7 @@ export default function Portada({ conectando, salaPrevia, error, onCrear, onUnir
       <div className="foco" />
       <main className="contenido portada">
         <p className="rotulo">Concurso</p>
-        <h1 className="logo">EL PROGRAMA</h1>
+        <h1 className="logo">TRACA</h1>
         <p className="claim">Pruebas al azar, una por ronda. Un solo ganador.</p>
         <p className="requisito">De 3 a 8 jugadores · cada uno en su pantalla · de 1 a 3 minutos</p>
 

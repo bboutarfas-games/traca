@@ -99,7 +99,7 @@ export default function App() {
     return (
       <Escenario>
         <p className="rotulo">Concurso</p>
-        <h1 className="logo">EL PROGRAMA</h1>
+        <h1 className="logo">TRACA</h1>
         <Fichas jugadores={jugadores} />
         <p className="cuenta">{jugadores.length} en el plató</p>
 

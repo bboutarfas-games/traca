@@ -1,6 +1,6 @@
-# El programa
+# Traca
 
-Party game de minijuegos cortos. 3-8 jugadores, cada uno en su propia pantalla.
+Party game de minijuegos cortos. Una traca: una prueba detrás de otra, sin respirar. 3-8 jugadores, cada uno en su propia pantalla.
 Web, sin backend: el multijugador lo pone Playroom Kit.
 
 ## Cómo está montado
