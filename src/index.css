@@ -438,3 +438,47 @@ body {
   background: var(--oro);
   transition: width 0.1s linear;
 }
+
+/* --- El foco -------------------------------------------------------------- */
+.pasillos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  width: 100%;
+}
+.pasillo {
+  position: relative;
+  aspect-ratio: 0.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.3rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--tenue);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.pasillo:hover:not(:disabled) { transform: scale(1.04); }
+.pasillo .numero { font-size: 1.1rem; }
+.pasillo.mio { border-color: var(--oro); background: rgba(255, 204, 47, 0.14); color: var(--texto); }
+.pasillo.iluminado {
+  border-color: var(--oro);
+  background: linear-gradient(180deg, rgba(255, 204, 47, 0.35), rgba(255, 204, 47, 0.05));
+  color: #2a1a00;
+}
+.pasillo.quieto { cursor: default; }
+
+.progreso { display: grid; gap: 0.4rem; width: 100%; margin-top: 0.5rem; }
+.carrera { display: flex; align-items: center; gap: 0.6rem; }
+.carrera .via { display: flex; gap: 4px; flex: 1; }
+.carrera .tramo {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.carrera .tramo.hecho { background: var(--oro); }

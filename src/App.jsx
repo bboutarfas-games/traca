@@ -91,8 +91,19 @@ export default function App() {
 
     const sig = faseIdx + 1
     if (sig < fases.length) {
+      // Un minijuego puede resolver algo al entrar en cada fase (rondas dentro
+      // de la ronda). Si devuelve estado nuevo, se aplica antes de puntuar.
+      const nuevo = mj.alEntrar?.({
+        jugadores,
+        datos: datosOk,
+        vivo: vivoOk,
+        fase: fases[sig].id,
+        faseIdx: sig,
+      })
+      if (nuevo) setVivo({ ...nuevo, mj: mjId })
+
       if (fases[sig].id === 'resultado')
-        setResumen(mj.resolver({ jugadores, datos: datosOk, vivo: vivoOk }))
+        setResumen(mj.resolver({ jugadores, datos: datosOk, vivo: nuevo || vivoOk }))
       setFaseIdx(sig)
       setFinFase(Date.now() + fases[sig].ms)
     } else if (ronda >= totalRondas) {

@@ -18,7 +18,9 @@ Cada minijuego es un módulo en `src/minijuegos/` que exporta:
     Pantalla({ fase, datos, vivo, ... })  // pinta cada fase
 
     inicial                       // opcional: estado que cambia durante la fase
-    tick({ jugadores, vivo, setVivo, fase })  // opcional: lo llama el host ~10/s
+    tick({ jugadores, vivo, setVivo, fase })   // opcional: lo llama el host ~10/s
+    alEntrar({ jugadores, datos, vivo, fase }) // opcional: al empezar cada fase;
+                                               // si devuelve algo, pasa a ser `vivo`
 
 `datos` no cambia durante la ronda; `vivo` sí, y solo lo escribe el host. Los
 minijuegos sin estado continuo no declaran `inicial` ni `tick`.
@@ -38,7 +40,11 @@ adelantas a la señal, fuera. Si dos elegís la misma silla, fuera los dos.
 suba, pero el brazo se cansa: hay que turnarse para descansar sin que bajen de la
 mitad los que sujetan. O llegáis todos, o no puntúa nadie.
 
-Faltan cinco, listados en `PENDIENTES`.
+**El foco** (uno contra el resto) — uno ilumina un pasillo cada asalto; los demás
+eligen por cuál pasan, en secreto. Si te ilumina, no avanzas. Hay que cruzar dos
+tramos en tres asaltos, así que puedes permitirte que te pillen una vez.
+
+Faltan cuatro, listados en `PENDIENTES`.
 
 ## Correr
 
