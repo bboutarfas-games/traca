@@ -549,3 +549,56 @@ body {
 }
 .baldosa.quieta { cursor: default; }
 .baldosa:disabled:not(.hundida) { opacity: 0.7; }
+
+/* --- El portero ----------------------------------------------------------- */
+.porteria {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.6rem;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-bottom-width: 6px;
+  border-radius: 10px;
+  background: repeating-linear-gradient(
+    90deg, rgba(255,255,255,0.02) 0 8px, transparent 8px 16px
+  );
+}
+.zona {
+  aspect-ratio: 0.75;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.2rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--tenue);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.zona:hover:not(:disabled) { transform: scale(1.05); }
+.zona .numero { font-size: 1rem; }
+.zona.mia { border-color: var(--oro); background: rgba(255, 204, 47, 0.14); color: var(--texto); }
+.zona.tapada { border-color: #7bed9f; background: rgba(123, 237, 159, 0.16); }
+.zona.choque { border-color: #ff3b5c; background: rgba(255, 59, 92, 0.16); }
+.zona.quieta { cursor: default; }
+
+/* --- El saboteador -------------------------------------------------------- */
+.vagon {
+  width: 100%;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.vagon .avance {
+  height: 100%;
+  background: var(--oro);
+  transition: width 0.25s ease;
+}
+.opcion.traidora { border-color: rgba(255, 59, 92, 0.5); }
+.opcion.traidora.activa { border-color: #ff3b5c; background: rgba(255, 59, 92, 0.18); }

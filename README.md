@@ -52,7 +52,16 @@ y marcarla cada uno en su pantalla. Puntúa quien la acierte.
 hunde la que tenga más gente. Si cada uno va a la suya no se hunde nada, pero el
 suelo se estrecha cada asalto (6, 4, 3 y 2 baldosas) hasta forzar el choque.
 
-Faltan dos, listados en `PENDIENTES`.
+**El portero** (uno contra el resto) — el portero tapa 2 de las 5 zonas en secreto
+y los demás chutan. Además, si dos chutan a la misma zona se estorban y fallan los
+dos: hay que esquivar al portero y a los compañeros a la vez.
+
+**El saboteador** (traición) — hay que juntar empujes para mover un armatoste, pero
+nadie puede empujar los tres asaltos, así que descansar es normal. El saboteador
+tiene un botón extra para frenar (−1) que solo ve él. Solo se muestra cuánto avanza
+cada asalto, no quién hizo qué. Votación al final.
+
+Ya están los ocho.
 
 ## Correr
 

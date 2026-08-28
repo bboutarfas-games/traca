@@ -59,7 +59,7 @@ export default function Portada({ conectando, salaPrevia, error, onCrear, onUnir
         <section className="programa">
           <p className="pista">
             El programa saca las pruebas al azar. Estas son las {PROGRAMA.length} que tiene
-            ({MINIJUEGOS.length} listas):
+            {PENDIENTES.length > 0 && ` (${MINIJUEGOS.length} listas)`}:
           </p>
           <p className="repertorio">
             {PROGRAMA.map((m, i) => (

@@ -4,12 +4,11 @@ import elAscensor from './elAscensor.jsx'
 import elFoco from './elFoco.jsx'
 import laContrasena from './laContrasena.jsx'
 import elUltimoEnPie from './elUltimoEnPie.jsx'
+import elPortero from './elPortero.jsx'
+import elSaboteador from './elSaboteador.jsx'
 
 // Los que ya se pueden jugar.
-export const MINIJUEGOS = [ordenFalsa, lasSillas, elAscensor, elFoco, laContrasena, elUltimoEnPie]
+export const MINIJUEGOS = [ordenFalsa, lasSillas, elAscensor, elFoco, laContrasena, elUltimoEnPie, elPortero, elSaboteador]
 
-// Los que faltan, solo para enseñarlos en la portada.
-export const PENDIENTES = [
-  { nombre: 'El portero', tipo: 'Uno contra el resto' },
-  { nombre: 'El saboteador', tipo: 'Traición' },
-]
+// Ya están los ocho.
+export const PENDIENTES = []

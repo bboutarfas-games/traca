@@ -55,6 +55,16 @@ export default function App() {
     window.location.reload()
   }
 
+  // Volver al lobby entre programas: reinicia el marcador y permite cambiar la
+  // duración o esperar a que entre alguien más.
+  const otroPrograma = () => {
+    jugadores.forEach((j) => j.setState('puntos', 0))
+    setRonda(0)
+    setResumen(null)
+    setVivo(null)
+    setEtapa('lobby')
+  }
+
   // --- Control de rondas: solo lo ejecuta el host ------------------------
 
   const abrirRonda = (n) => {
@@ -162,7 +172,11 @@ export default function App() {
       <Escenario>
         <h1 className="logo">SE ACABÓ</h1>
         <Podio jugadores={jugadores} />
-        {esHost && <button className="boton" onClick={() => abrirRonda(1)}>Otra vez</button>}
+        {esHost ? (
+          <button className="boton" onClick={otroPrograma}>Otro programa</button>
+        ) : (
+          <p className="espera">Esperando al presentador…</p>
+        )}
         <button className="enlace" onClick={salir}>Salir</button>
       </Escenario>
     )
